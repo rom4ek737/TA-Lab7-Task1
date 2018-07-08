@@ -1,7 +1,6 @@
 package com.epam.lab7.hw3.task4;
 
 import com.epam.lab7.hw2.task4.TestReflection;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import org.apache.logging.log4j.LogManager;
 import org.junit.Before;
 import org.junit.Test;
