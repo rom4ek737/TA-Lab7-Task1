@@ -1,4 +1,8 @@
 package com.epam.lab7.hw7.task2;
 
-public class Student {
+abstract class Student implements MyDAOInterface{
+    public boolean deleteStudent() {
+        return true;
+    }
+
 }
