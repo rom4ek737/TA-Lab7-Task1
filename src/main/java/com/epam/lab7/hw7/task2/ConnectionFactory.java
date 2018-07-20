@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.nio.charset.Charset;
 
-public class ConnectionFactory implements MyDAOInterface{
+public class ConnectionFactory implements MyDAOInterface {
     public static final String URL = "jdbc:mysql://localhost:3306/students";
     public static final String USER = "root";
     public static final String PASS = "hellraiser1";
@@ -19,20 +19,20 @@ public class ConnectionFactory implements MyDAOInterface{
             throw new RuntimeException("Error connecting to the database", ex);
         }
     }
-    public Student getStudent(int id) throws Exception{
+
+    public Student getStudent(int id) throws Exception {
         ConnectionFactory cf = new ConnectionFactory();
         Connection connection = cf.getConnection();
 
         try {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM stud WHERE stud_no=" + id);
-            if(rs.next())
-            {
+            if (rs.next()) {
                 Student user = new Student();
-                user.setId( rs.getInt("stud_no") );
-                user.setFname( rs.getString("stud_fname") );
-                user.setLname( rs.getString("stud_lname") );
-                user.setPhone( rs.getInt("stud_phone") );
+                user.setId(rs.getInt("stud_no"));
+                user.setFname(rs.getString("stud_fname"));
+                user.setLname(rs.getString("stud_lname"));
+                user.setPhone(rs.getInt("stud_phone"));
                 return user;
             }
         } catch (SQLException ex) {
@@ -41,15 +41,14 @@ public class ConnectionFactory implements MyDAOInterface{
         return null;
     }
 
-    public Set getAllUsers() throws Exception{
+    public Set getAllUsers() throws Exception {
         ConnectionFactory cf = new ConnectionFactory();
         Connection connection = cf.getConnection();
         try {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM stud");
             Set users = new HashSet();
-            while(rs.next())
-            {
+            while (rs.next()) {
                 Student student = extractUserFromResultSet(rs);
                 users.add(student);
             }
@@ -59,16 +58,17 @@ public class ConnectionFactory implements MyDAOInterface{
         }
         return null;
     }
+
     private Student extractUserFromResultSet(ResultSet rs) throws SQLException {
         Student student = new Student();
-        student.setId( rs.getInt("stud_no") );
-        student.setFname( rs.getString("stud_fname") );
-        student.setLname( rs.getString("stud_lname") );
-        student.setPhone( rs.getInt("stud_phone") );
+        student.setId(rs.getInt("stud_no"));
+        student.setFname(rs.getString("stud_fname"));
+        student.setLname(rs.getString("stud_lname"));
+        student.setPhone(rs.getInt("stud_phone"));
         return student;
-
     }
-    public boolean updateStudent(Student student) throws Exception{
+
+    public boolean updateStudent(Student student) throws Exception {
         ConnectionFactory cf = new ConnectionFactory();
         Connection connection = cf.getConnection();
         try {
@@ -78,7 +78,7 @@ public class ConnectionFactory implements MyDAOInterface{
             ps.setInt(3, student.getPhone());
             ps.setInt(4, student.getId());
             int i = ps.executeUpdate();
-            if(i == 1) {
+            if (i == 1) {
                 return true;
             }
         } catch (SQLException ex) {
@@ -86,13 +86,14 @@ public class ConnectionFactory implements MyDAOInterface{
         }
         return false;
     }
+
     public boolean deleteStudent(int id) throws Exception {
         ConnectionFactory cf = new ConnectionFactory();
         Connection connection = cf.getConnection();
         try {
             Statement stmt = connection.createStatement();
             int i = stmt.executeUpdate("DELETE FROM spec WHERE spec_id=" + id);
-            if(i == 1) {
+            if (i == 1) {
                 return true;
             }
         } catch (SQLException ex) {
@@ -100,15 +101,12 @@ public class ConnectionFactory implements MyDAOInterface{
         }
         return false;
     }
+
     public void createStudent() throws Exception {
         ConnectionFactory cf = new ConnectionFactory();
         Connection connection = cf.getConnection();
         try {
             PreparedStatement ps = connection.prepareStatement("INSERT INTO spec (spec_no, renamed_test, spec_name, desc_spec, raiting, test3) VALUES (2, 3, 4, 5, 7, 5)");
-//            ps.setString(1, "Микола");
-//            ps.setString(2, "Перший");
-//            ps.setInt(3, 55622);
-//            ps.setInt(4, number);
             ps.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace();
