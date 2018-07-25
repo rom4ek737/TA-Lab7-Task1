@@ -22,8 +22,8 @@ public class VoidMethodsTest {
     @Test//(expected = IOException.class)
     public void testFile() throws IOException {
         v.createFile();
-        assertTrue("File did not created", v.wasCreated);
-        logger.info("File was created");
+        assertTrue("Auto did not created", v.wasCreated);
+        logger.info("Auto was created");
     }
 
     @Test

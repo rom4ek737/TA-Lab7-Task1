@@ -6,10 +6,11 @@ import java.util.Set;
 import java.nio.charset.Charset;
 
 public class ConnectionFactory implements MyDAOInterface {
-    public static final String URL = "jdbc:mysql://localhost:3306/students";
+    public static final String URL = "jdbc:mysql://localhost:3306/students?useSSL=false";
     public static final String USER = "root";
     public static final String PASS = "hellraiser1";
     public static final Charset UTF_8 = Charset.forName("UTF-8");
+
 
     public static Connection getConnection() throws Exception {
         try {
@@ -88,8 +89,7 @@ public class ConnectionFactory implements MyDAOInterface {
     }
 
     public boolean deleteStudent(int id) throws Exception {
-        ConnectionFactory cf = new ConnectionFactory();
-        Connection connection = cf.getConnection();
+        Connection connection = ConnectionFactory.getConnection();
         try {
             Statement stmt = connection.createStatement();
             int i = stmt.executeUpdate("DELETE FROM spec WHERE spec_id=" + id);

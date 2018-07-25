@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Site>
+    <sites>
+    <title>Google</title>
+    <siteType>mirror</siteType>
+        <chars>
+            <email type="news">test@gmail.com</email>
+            <news>No</news>
+            <archive type="mirror">mirror</archive>
+            <vouting type="authorized">authorized</vouting>
+            <paid>No</paid>
+        </chars>
+        <authorize>Yes</authorize>
+    </sites>
+    <sites>
+        <title>24Channel</title>
+        <siteType>news</siteType>
+        <chars>
+            <email>24@news.ua</email>
+            <news>sport</news>
+            <archive>No</archive>
+            <vouting type="anonymous">anonymous</vouting>
+            <paid type="download">download</paid>
+        </chars>
+        <authorize>Yes</authorize>
+    </sites>
+    <sites>
+        <title>Wiki</title>
+        <siteType>portal</siteType>
+        <chars>
+            <email>news@wiki.com</email>
+            <news>everything</news>
+            <archive>N</archive>
+            <vouting type="anonymous">anonymous</vouting>
+            <paid type="download">download</paid>
+        </chars>
+        <authorize>Yes</authorize>
+    </sites>
+</Site>

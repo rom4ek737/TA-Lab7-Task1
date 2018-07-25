@@ -27,7 +27,7 @@ public class FewQuery {
             try {
                 String user = "root";
                 String password = "hellraiser1";
-                connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/students", user, password);
+                connect = DriverManager.getConnection("jdbc:mysql://localhost:3306/students?setSSL=false", user, password);
 
             } catch (SQLException e) {
                 logger.info("Connection Failed! Check output console");
@@ -89,8 +89,8 @@ public class FewQuery {
             if (connect != null) {
                 connect.close();
             }
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
         }
     }
 }
-
